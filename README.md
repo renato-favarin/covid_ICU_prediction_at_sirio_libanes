@@ -1,7 +1,46 @@
-# Kaggle_Sirio_Libanes_ICU_Prediction
+# COVID-19 - clinical data to assess diagnosis
 Data challenge: https://www.kaggle.com/S%C3%ADrio-Libanes/covid19
 
-Conclusions
+<img src="/images/covid_ml.jpg" width="500" alt="Rossmann logo" title="Rossmann" align="right" height="300" class="center"/>
+
+## Purpose of this work
+The objective of this work is to provide a machine learning overview using Python language and a real database from Sírio-Libanês Hospital in Brazil. The datase contains health monitoring data of patients in different time windows of events and their eventual evolution to the intensive care unit (ICU).
+
+This can be a great source of study for those who are having their first contacts with machine learning modeling as it is full of detailed explanations.
+
+## Scenario
+The covid-19 pandemic has plagued the world since the beginning of 2020, crowding hospitals and resulting in a scarcity of resources.
+
+It is known that healthcare systems can be a scarce resource in pandemic times; therefore, being able to predict whether or not a patient will occupy a bed in ICU can be a strong ally in structuring plans to fight the disease considering the limited resources in terms of medical staff and hospital infrastructure.
+
+The ultimate goal is to avoid collapse in the health care system, which is defined when there are cases above hospital capacity in terms of ICU beds, human resources and personal protective equipment.
+
+One possible solution to avoid this collapse can be obtained with machine learning application.
+
+With machine learning it is possible to adjust algorithms to make predictions or decisions. For this application, it will be used supervised algorithms in order to predict, based in patient's initial medical conditions, if he/she will need an intensive therapy unit or not during the covid-19 treatment.
+
+Three different models (decision tree classifier, random forest classifier and logistic regression) were explanied and evaluated.
+
+
+## Data understanding
+The dataset contains data from just over 380 patients who were admitted at the Sírio-Libanês Hospital for Covid-19 treatment.
+
+All data were anonymized following the best international practices and recommendations by hospital collaborators;  also, the data has been cleaned and scaled by column according to Min Max Scaler to fit between -1 and 1.
+
+For each patiet, data such as blood results and vital signs were aggregated by time windows in chronological order. The objective of this study is to predict, based on health data, whether a particular patient will need an ICU or not.
+
+It can't be used the data when the target variable is present, as it is unknown the order of the event (maybe the target event happened before the results were obtained); this is represented in the following figure.
+
+<p align="center">
+  <img src = "/images/ICU_use_data.jpg" width="800"> <br>
+</p>
+
+Early identification of those patients who will develop an adverse course of illness (and need intensive care) is a key for an appropriate treatment (saving lives) and to managing beds and resources. This is the reason why in this work all models are using only the values of the first time window (0-2h) to predict whether, in any other time window, the patient will go to the ICU or not.
+
+
+
+
+# Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
 
 An extensive exploratory data analysis was carried out, which resulted in the elimination of some data that would compromise the quality of the models;
