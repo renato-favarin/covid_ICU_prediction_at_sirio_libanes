@@ -39,6 +39,8 @@ Early identification of those patients who will develop an adverse course of ill
 
 ## Data cleaning and modeling - iterative process
 
+## Model performance
+
 ## Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
 
