@@ -37,9 +37,30 @@ It can't be used the data when the target variable is present, as it is unknown 
 
 Early identification of those patients who will develop an adverse course of illness (and need intensive care) is a key for an appropriate treatment (saving lives) and to managing beds and resources. This is the reason why in this work all models are using only the values of the first time window (0-2h) to predict whether, in any other time window, the patient will go to the ICU or not.
 
+## Evaluation metrics adopted
+The metrics were chosen based on the worst scenario of the 2 types of errors:
+- False positive: the patient occupied an ICU bed that he/she would not need to occupy and there was a lack of beds for those who needed it, and the patient without an ICU bed ended up dying.
+
+- False negative: the patient went home, his/her health deteriorated and he/she died.
+
+In the worst scenario for the false positive cases there is still a chance that there will be no collapse of the ICU system and, as a result, there will be no more deaths because of this error. But we cannot say that about the false negative error.
+
+To evaluate the performance of the models, **recall** metric (which is sensitive to false negatives) and the **F1-score** were used; note that precision (which is sensitive to false positives) is still present in the F1-score metric as this is a harmonic average of recall and precision, being very sensitive to any low value of these metrics.
+
 ## Data cleaning and modeling - iterative process
 
+Hyperparameter tuning
+
 ## Model performance
+
+Four different rounds of training and evaluation of each of the three models were performed.
+
+For each of these rounds, datasets were reworked, in addition to hyperparameter tuning.
+
+In summary about the reworks in the dataset:
+- round 1: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because.
+
+
 
 ## Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
