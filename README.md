@@ -49,18 +49,39 @@ To evaluate the performance of the models, **recall** metric (which is sensitive
 
 ## Data cleaning and modeling - iterative process
 
-Hyperparameter tuning
-
-## Model performance
-
 Four different rounds of training and evaluation of each of the three models were performed.
 
 For each of these rounds, datasets were reworked, in addition to hyperparameter tuning.
 
 In summary about the reworks in the dataset:
 - round 1: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because.
+- round 2
+- round 3
+- round 4
 
+## Hyperparameter tuning
+As the objective of this work was to provide a machine learning overview using Python language, a slow and visual process was used to adjust the hyperparameters.
+For each of the variations of the hyperparameters, boxplot graphs were plotted containing the performance obtained with the different values of the studied hyperparameter, all evaluated using cross-validation (stratified, n_splits = 3 and n_repeats = 10).
 
+The evaluated hyperparameters of each model were:
+
+- decision tree classifier: max_depth
+- random forest classifier: n_estimators...
+- logistic regression: ....
+
+### Example of the hyperparameter tuning
+
+To visualize the overfitting process, the performance for each of the hyperparameter variations was compared with the training data; in other words, how the model performed, testing with the data used for its construction.
+
+EXAMPLE 1
+EXAMPLE 2
+EXAMPLE 3
+
+The choice of the hyperparameter value was always made outside the overfitting zone, which is when the model performs on the verge of perfection.
+
+## Model performance
+
+TABLE OF PERFORMANCE
 
 ## Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
