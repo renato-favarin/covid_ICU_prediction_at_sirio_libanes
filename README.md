@@ -37,9 +37,9 @@ It can't be used the data when the target variable is present, as it is unknown 
 
 Early identification of those patients who will develop an adverse course of illness (and need intensive care) is a key for an appropriate treatment (saving lives) and to managing beds and resources. This is the reason why in this work all models are using only the values of the first time window (0-2h) to predict whether, in any other time window, the patient will go to the ICU or not.
 
-# Data cleaning and modeling - iterative process
+## Data cleaning and modeling - iterative process
 
-# Conclusions
+## Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
 
 An extensive exploratory data analysis was carried out, which resulted in the elimination of some data that would compromise the quality of the models;
