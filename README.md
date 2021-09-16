@@ -60,20 +60,25 @@ In summary about the reworks in the dataset:
 - round 4
 
 ## Hyperparameter tuning
-As the objective of this work was to provide a machine learning overview using Python language, a slow and visual process was used to adjust the hyperparameters.
+As the objective of this work is to provide a machine learning overview using Python language, a slow and visual process was used to adjust the hyperparameters.
 For each of the variations of the hyperparameters, boxplot graphs were plotted containing the performance obtained with the different values of the studied hyperparameter, all evaluated using cross-validation (stratified, n_splits = 3 and n_repeats = 10).
 
 The evaluated hyperparameters of each model were:
 
 - decision tree classifier: max_depth
-- random forest classifier: n_estimators...
-- logistic regression: ....
+- random forest classifier: max_depth, n_estimators
+- logistic regression: solver, C
 
 ### Example of the hyperparameter tuning
 
 To visualize the overfitting process, the performance for each of the hyperparameter variations was compared with the training data; in other words, how the model performed, testing with the data used for its construction.
 
 EXAMPLE 1
+
+<p align="center">
+  <img src = "/images/tuning_ex_1.jpg" width="800"> <br>
+</p>
+
 EXAMPLE 2
 EXAMPLE 3
 
