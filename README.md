@@ -102,7 +102,7 @@ The choice of the hyperparameter value was always made outside the overfitting z
   <img src = "/images/tuning_ex_3.png" width="800"> <br>
 </p>
 
-Note what is explained in the curve trend of the median of the different values of "C" of the test data, whose peak was obtained for C = 1.0.
+Note what is explained in the curve trend of the median of the different values of "C"; considering the test data, it can be seen that the peak was obtained for C = 1.0.
 On the other hand, the results of the training data tend to overfit for the higher values of "C".
 
 ## Model performance
