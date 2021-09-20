@@ -54,10 +54,10 @@ Four different rounds of training and evaluation of each of the three models wer
 For each of these rounds, datasets were reworked, in addition to hyperparameter tuning.
 
 In summary about the reworks in the dataset:
-- rounds 1 and 2: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because; the difference between round 1 and 2 is that from the second onwards, cross-validation was adopted. <br>
-- round 3: it was performed a feature selection  in which features with more than 0.90 of the Pearson correlation coefficient between themselves were excluded (only one of these highly correlated features was maintained). From the 229 original columns, 59 remained. <br>
-- round 4: another feature selection was performed, this time using the SelectKBest method and selecting 10 features, in addition to performing the one hot encoder for the feature that brings the age range (originally ranging between 1 and 9).
-- round 5: after the identification of a small data leakage from ICU windows during the first data treatment, data for nearly 60 patients where this happened were excluded based on the round 3 dataset.
+- **rounds 1 and 2**: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because; the difference between round 1 and 2 is that from the second onwards, cross-validation was adopted. <br>
+- **round 3**: it was performed a feature selection  in which features with more than 0.90 of the Pearson correlation coefficient between themselves were excluded (only one of these highly correlated features was maintained). From the 229 original columns, 59 remained. <br>
+- **round 4**: another feature selection was performed, this time using the SelectKBest method and selecting 10 features; in addition, the one hot encoder was performed for the feature that brought the age range (originally ranging between 1 and 9). From the 229 original columns, 9 remained and 1 was transformed into 10 others, totaling 19 columns.
+- **round 5**: after the identification of a small data leakage from ICU windows during the first data treatment, data of nearly 60 patients where this happened were excluded based on the round 3 dataset.
 
 ## Hyperparameter tuning
 As the objective of this work is to provide a machine learning overview using Python language, a slow and visual process was used to adjust the hyperparameters.
@@ -65,9 +65,9 @@ For each of the variations of the hyperparameters, boxplot graphs were plotted c
 
 The evaluated hyperparameters of each model were:
 
-- decision tree classifier: max_depth
-- random forest classifier: max_depth, n_estimators
-- logistic regression: solver, C
+- **decision tree classifier**: max_depth
+- **random forest classifier**: max_depth, n_estimators
+- **logistic regression**: solver, C
 
 ### Example of the hyperparameter tuning
 
@@ -103,11 +103,16 @@ The choice of the hyperparameter value was always made outside the overfitting z
 </p>
 
 Note what is explained in the curve trend of the median of the different values of "C"; considering the test data, it can be seen that the peak was obtained for C = 1.0.
-On the other hand, the results of the training data tend to overfit for the higher values of "C".
+On the other hand, the results of the training data tend to overfit for the highest values of "C".
 
 ## Model performance
 
-round V It  It is more than 16% of the entire database, and worse, referring to only those patients who were transferred to ICU at some time window.
+There is no standard deviation for the round I models as only a single forecast was made.
+
+Apparently, the best model was the random forest, trained in round III. We also noticed that the random forest always performed better than the decision tree classifier (except in round V, which was a disaster for all models).
+
+In round 5, as more than 16% of the entire database was removed, on top of all data from patients who ended up going to the ICU at some point, this significantly affected the performance of the model.
+
 
 <p align="center">
   <img src = "/images/recall_all_rounds.png" width="800"> <br>
@@ -119,21 +124,21 @@ round V It  It is more than 16% of the entire database, and worse, referring to 
 </p>
 
 ## Conclusions
-As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
+It is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
 
-An extensive exploratory data analysis was carried out, which resulted in the elimination of some data that would compromise the quality of the models;
+- An extensive exploratory data analysis was carried out, which resulted in the elimination of some data that would compromise the quality of the models;
 
-A first round of machine learning was carried out for 3 different estimators: decision tree classifier, random forest and logistic regression; it was concluded, however, that the performance of such predictions represented nothing, being a mere product of luck;
+- A first round of machine learning was carried out for 3 different estimators: decision tree classifier, random forest and logistic regression; it was concluded, however, that the performance of such predictions represented nothing, being a mere product of luck;
 
-To support a real evaluation of the model, cross-validation was presented and performed for other 4 training and testing rounds.
+- To support a real evaluation of the model, cross-validation was presented and performed for other 4 training and testing rounds.
 
-In addition to cross-validation, some hyperparameters were also varied and tested for the 3 different estimators mentioned above; the difference in predictive power, in general, varied considerably as the hyperparameter varied;
+- In addition to cross-validation, some hyperparameters were also varied and tested for the 3 different estimators mentioned above; the difference in predictive power, in general, varied considerably as the hyperparameter varied;
 
-The best estimator, for the analyzes carried out in this work, was the random forest, followed by the logistic regression;
+- The best estimator, for the analyzes carried out in this work, was the random forest, followed by the logistic regression;
 
-It was noticed a considerable increase in performance for all the estimators by reducing the number of database columns (features) that were duplicated and highly correlated with themselves; however, by exaggerating the dose and removing more features, we negate the benefits previously obtained;
+- It was noticed a considerable increase in performance for all the estimators by reducing the number of database columns (features) that were duplicated and highly correlated with themselves; however, by exaggerating the dose and removing more features, we negate the benefits previously obtained;
 
-It was diagnosed that in the initial treated database there was a data leakage that could be impacting the predictive capacity of the models; a new round of tests was carried out, but there was no success in improving the performance obtained previously;
+- It was diagnosed that in the initial treated database there was a data leakage that could be impacting the predictive capacity of the models; a new round of tests was carried out, but there was no success in improving the performance obtained previously;
 
 The failure of this attempt, however, has resulted in reflection and consideration of the impact on classification analysis when data collection and data availability is already carried out in an unbalanced manner from the beggining of the work.
 
