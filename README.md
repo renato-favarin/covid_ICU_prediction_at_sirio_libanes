@@ -73,7 +73,7 @@ The evaluated hyperparameters of each model were:
 
 To visualize the overfitting process, the performance for each of the hyperparameter variations was compared with the training data; in other words, how the model performed, testing with the data used for its construction.
 <br>
-1) Decision tree classifier
+**1) Decision tree classifier**
 
 <p align="center">
   <img src = "/images/tuning_ex_1.png" width="800"> <br>
@@ -84,7 +84,7 @@ It can be clearly seen that starting from max_depth = 4 there is a considerable 
 Also note that at max_depths > 10 the performance of the training data is close to perfection while the test data does not perform as well as at max_depth=3 or 4; this is because the model was so adjusted to the training data that it is not able to generalize to the test data.
 <br>
 
-2) Random forest classifier
+**2) Random forest classifier**
 
 A similar analysis can be made for recall performance in random forest, except that it is much less susceptible to overfit, whose performance tends to reach a value and maintain performance.
 
@@ -92,7 +92,7 @@ A similar analysis can be made for recall performance in random forest, except t
   <img src = "/images/tuning_ex_2.png" width="1000"> <br>
 </p>
 
-3) Logistic regression
+**3) Logistic regression**
 
 Another example of hyperparameter tuning can be seen below, this time for logistic regression. The hyperparameter "C" was varied, which is the regularization parameter defined as 1/ 𝜆, where  𝜆  controls the trade-off between increasing complexity as much as it wants while trying to keep it simple. <br>
 For example, if λ is very low or 0 (high C value), the model will have enough power to increase it's complexity (overfit) by assigning big values to the weights for each parameter. On the other hand, when we increase the value of λ (lower C value), the model will tend to underfit, because it will become too simple
