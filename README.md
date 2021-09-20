@@ -54,10 +54,10 @@ Four different rounds of training and evaluation of each of the three models wer
 For each of these rounds, datasets were reworked, in addition to hyperparameter tuning.
 
 In summary about the reworks in the dataset:
-- round 1: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because.
-- round 2
-- round 3
-- round 4
+- rounds 1 and 2: after the first data treatment, including forward filling and backward filling to fill missing values (always considering the patient's own data); in addition, 1 patient was removed for extreme lack of data and 32 were also removed for having already arrived at the hospital and being forwarded directly to the ICU because; the difference between round 1 and 2 is that from the second onwards, cross-validation was adopted. <br>
+- round 3: it was performed a feature selection  in which features with more than 0.90 of the Pearson correlation coefficient between themselves were excluded (only one of these highly correlated features was maintained). From the 229 original columns, 59 remained. <br>
+- round 4: another feature selection was performed, this time using the SelectKBest method and selecting 10 features, in addition to performing the one hot encoder for the feature that brings the age range (originally ranging between 1 and 9).
+- round 5: after the identification of a small data leakage from ICU windows during the first data treatment, data for nearly 60 patients where this happened were excluded based on the round 3 dataset.
 
 ## Hyperparameter tuning
 As the objective of this work is to provide a machine learning overview using Python language, a slow and visual process was used to adjust the hyperparameters.
@@ -72,21 +72,51 @@ The evaluated hyperparameters of each model were:
 ### Example of the hyperparameter tuning
 
 To visualize the overfitting process, the performance for each of the hyperparameter variations was compared with the training data; in other words, how the model performed, testing with the data used for its construction.
-
-EXAMPLE 1
+<br>
+1) Decision tree classifier
 
 <p align="center">
-  <img src = "/images/tuning_ex_1.jpg" width="800"> <br>
+  <img src = "/images/tuning_ex_1.png" width="800"> <br>
 </p>
 
-EXAMPLE 2
-EXAMPLE 3
+It can be clearly seen that starting from max_depth = 4 there is a considerable gap between the performance of the training and test data for the F1-score, indicating the beginning of overfit.
 
+Also note that at max_depths > 10 the performance of the training data is close to perfection while the test data does not perform as well as at max_depth=3 or 4; this is because the model was so adjusted to the training data that it is not able to generalize to the test data.
+<br>
+
+2) Random forest classifier
+
+A similar analysis can be made for recall performance in random forest, except that it is much less susceptible to overfit, whose performance tends to reach a value and maintain performance.
+
+<p align="center">
+  <img src = "/images/tuning_ex_2.png" width="1000"> <br>
+</p>
+
+3) Logistic regression
+
+Another example of hyperparameter tuning can be seen below, this time for logistic regression. The hyperparameter "C" was varied, which is the regularization parameter defined as 1/ 𝜆, where  𝜆  controls the trade-off between increasing complexity as much as it wants while trying to keep it simple. <br>
+For example, if λ is very low or 0 (high C value), the model will have enough power to increase it's complexity (overfit) by assigning big values to the weights for each parameter. On the other hand, when we increase the value of λ (lower C value), the model will tend to underfit, because it will become too simple
 The choice of the hyperparameter value was always made outside the overfitting zone, which is when the model performs on the verge of perfection.
+
+<p align="center">
+  <img src = "/images/tuning_ex_3.png" width="800"> <br>
+</p>
+
+Note what is explained in the curve trend of the median of the different values of "C" of the test data, whose peak was obtained for C = 1.0.
+On the other hand, the results of the training data tend to overfit for the higher values of "C".
 
 ## Model performance
 
-TABLE OF PERFORMANCE
+round V It  It is more than 16% of the entire database, and worse, referring to only those patients who were transferred to ICU at some time window.
+
+<p align="center">
+  <img src = "/images/recall_all_rounds.png" width="800"> <br>
+</p>
+
+
+<p align="center">
+  <img src = "/images/f1_score_all_rounds.png" width="800"> <br>
+</p>
 
 ## Conclusions
 As will be seen throughout this work, it is part of the data scientist's life to iterate between exploratory data analysis, treatment of the database, modifications of the hyperparameters of the estimators, model training and testing;
