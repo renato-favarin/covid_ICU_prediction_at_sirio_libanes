@@ -65,13 +65,14 @@ For each of the variations of the hyperparameters, boxplot graphs were plotted c
 
 The evaluated hyperparameters of each model were:
 
-- **decision tree classifier**: max_depth
-- **random forest classifier**: max_depth, n_estimators
-- **logistic regression**: solver, C
+- **decision tree classifier**: max_depth;
+- **random forest classifier**: max_depth, n_estimators;
+- **logistic regression**: solver, C.
 
 ### Example of the hyperparameter tuning
 
 To visualize the overfitting process, the performance for each of the hyperparameter variations was compared with the training data; in other words, how the model performed, testing with the data used for its construction.
+<br>
 <br>
 **1) Decision tree classifier**
 
@@ -111,7 +112,7 @@ There is no standard deviation for the round I models as only a single forecast 
 
 Apparently, the best model was the random forest, trained in round III. We also noticed that the random forest always performed better than the decision tree classifier (except in round V, which was a disaster for all models).
 
-In round 5, as more than 16% of the entire database was removed, on top of all data from patients who ended up going to the ICU at some point, this significantly affected the performance of the model.
+In the round V, as more than 16% of the entire database was removed, and considering that it was only patient data that ended up going to the ICU at some point, this significantly affected the performance of the model.
 
 
 <p align="center">
@@ -139,7 +140,5 @@ It is part of the data scientist's life to iterate between exploratory data anal
 - It was noticed a considerable increase in performance for all the estimators by reducing the number of database columns (features) that were duplicated and highly correlated with themselves; however, by exaggerating the dose and removing more features, we negate the benefits previously obtained;
 
 - It was diagnosed that in the initial treated database there was a data leakage that could be impacting the predictive capacity of the models; a new round of tests was carried out, but there was no success in improving the performance obtained previously;
-
-The failure of this attempt, however, has resulted in reflection and consideration of the impact on classification analysis when data collection and data availability is already carried out in an unbalanced manner from the beggining of the work.
 
 Next steps and strategies were discussed in an attempt to improve the predictive performance of the estimators.
