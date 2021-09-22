@@ -1,7 +1,7 @@
 # COVID-19 - clinical data to assess diagnosis
 Data challenge: https://www.kaggle.com/S%C3%ADrio-Libanes/covid19
 
-<img src="/images/covid_ml.jpg" width="500" alt="Rossmann logo" title="Rossmann" align="right" height="300" class="center"/>
+<img src="/images/covid_ml.jpg" width="500" align="right" height="300" class="center"/>
 
 ## Purpose of this work
 The objective of this work is to provide a machine learning overview using Python language and a real database from Sírio-Libanês Hospital in Brazil. The datase contains health monitoring data of patients in different time windows of events and their eventual evolution to the intensive care unit (ICU).
